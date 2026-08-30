@@ -30,7 +30,7 @@ public class PetController {
     @GetMapping
     public ResponseEntity<List<Pet>> listarPets() {
 
-        String sql = "SELECT * FROM pets";
+        String sql = "SELECT * FROM petshop";
         List<Pet> pets = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Pet.class));
         return ResponseEntity.status(200).body(pets);
     }
@@ -39,7 +39,7 @@ public class PetController {
     @GetMapping("/{id}")
     public ResponseEntity<Pet> listarPetsId(@PathVariable String id) {
 
-        List<Pet> listaPets = jdbcTemplate.query("SELECT * FROM pets WHERE id = ?",
+        List<Pet> listaPets = jdbcTemplate.query("SELECT * FROM petshop WHERE id = ?",
                 new BeanPropertyRowMapper<>(Pet.class), id);
 
         if (listaPets.isEmpty()) {
@@ -59,7 +59,7 @@ public class PetController {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(con -> {
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO pets (nome, especie, raca, dataNascimento, peso, tutorNome, tutorTelefone) " +
+                    "INSERT INTO petshop (nome, especie, raca, dataNascimento, peso, tutorNome, tutorTelefone) " +
                             "VALUES (?, ?, ?, ?, ?, ?, ?)",
                     Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, pet.getNome());
@@ -88,7 +88,7 @@ public class PetController {
         }
 
         Integer listaPets = jdbcTemplate.update(
-                "UPDATE pets SET nome = ?, especie = ?, raca = ?, dataNascimento = ?, peso = ?, " +
+                "UPDATE petshop SET nome = ?, especie = ?, raca = ?, dataNascimento = ?, peso = ?, " +
                         "tutorNome = ?, tutorTelefone = ? WHERE id = ?",
                 pet.getNome(), pet.getEspecie(), pet.getRaca(), pet.getDataNascimento(),
                 pet.getPeso(), pet.getTutorNome(), pet.getTutorTelefone(), id);
@@ -105,7 +105,7 @@ public class PetController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Pet> deletarPet(@PathVariable Integer id) {
 
-        String sqlExisteId = "SELECT COUNT(*) FROM pets WHERE id = ?";
+        String sqlExisteId = "SELECT COUNT(*) FROM petshop WHERE id = ?";
         Integer countId = jdbcTemplate.queryForObject(sqlExisteId, Integer.class, id);
         Boolean existePorId = countId == 1;
 
@@ -113,7 +113,7 @@ public class PetController {
             return ResponseEntity.status(404).build();
         }
 
-        jdbcTemplate.update("DELETE FROM pets WHERE id = ?", id);
+        jdbcTemplate.update("DELETE FROM petshop WHERE id = ?", id);
         return ResponseEntity.status(204).build();
     }
 
