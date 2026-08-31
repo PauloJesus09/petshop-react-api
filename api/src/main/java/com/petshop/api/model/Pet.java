@@ -1,4 +1,4 @@
-package com.petshop.model;
+package com.petshop.api.model;
 
 import java.time.LocalDate;
 
