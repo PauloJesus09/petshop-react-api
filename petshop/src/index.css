@@ -1,13 +1,19 @@
 :root {
-  --cor-primaria: #ff8a3d;
-  --cor-primaria-escura: #e06b1f;
-  --cor-secundaria: #2f9e8f;
-  --cor-fundo: #fff8f2;
-  --cor-texto: #33302c;
-  --cor-borda: #f0ddce;
-  --cor-erro: #c0392b;
-  --cor-sucesso: #2e7d32;
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --cor-primaria: #3a6659;
+  --cor-primaria-escura: #294a40;
+  --cor-fundo: #f2f1ed;
+  --cor-superficie: #ffffff;
+  --cor-texto: #201f1d;
+  --cor-texto-suave: #68655d;
+  --cor-borda: #e0ddd5;
+  --cor-erro: #9a3b2e;
+  --cor-erro-fundo: #f8ece9;
+  --cor-sucesso: #34633e;
+  --cor-sucesso-fundo: #eaf1ea;
+  --cor-aviso: #6b5a2e;
+  --cor-aviso-fundo: #f5f0e2;
+  --raio: 6px;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
 
 * {
@@ -18,6 +24,7 @@ body {
   margin: 0;
   background-color: var(--cor-fundo);
   color: var(--cor-texto);
+  -webkit-font-smoothing: antialiased;
 }
 
 button {
@@ -27,4 +34,6 @@ button {
 
 input, select {
   font-family: inherit;
+  width: 100%;
+  min-width: 0;
 }
